@@ -1,0 +1,13 @@
+{
+	"name" : "connect-domain",
+	"version" : "0.1.0",
+	"description" : "Asynchronous error handler for Connect",
+	"keywords": [ "domain", "error", "connect" ],
+	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
+	"main" : "index",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/baryshev/connect-domain.git"
+	},
+	"engines" : { "node": ">= 0.8.0" }
+}
