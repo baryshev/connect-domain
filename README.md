@@ -1,4 +1,3 @@
-[![build status](https://secure.travis-ci.org/baryshev/connect-domain.png)](http://travis-ci.org/baryshev/connect-domain)
 # About 
 
 Asynchronous error handler for Connect
