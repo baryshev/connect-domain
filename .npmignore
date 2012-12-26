@@ -1,1 +1,6 @@
 .git*
+test/
+lib-cov/
+coverage.html
+.travis.yml
+Makefile
