@@ -9,5 +9,13 @@
 		"type": "git",
 		"url": "git://github.com/baryshev/connect-domain.git"
 	},
+	"devDependencies": {
+		"should": "*",
+		"connect": "*",
+		"jscover": "*",
+		"supertest": "*",
+		"pedding": "*",
+		"mocha": "*"
+	},
 	"engines" : { "node": ">= 0.8.0" }
 }
