@@ -1,6 +1,6 @@
 {
 	"name" : "connect-domain",
-	"version" : "0.4.0",
+	"version" : "0.4.1",
 	"description" : "Asynchronous error handler for Connect",
 	"keywords": [ "domain", "error", "connect" ],
 	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
