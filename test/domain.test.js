@@ -14,8 +14,6 @@ var connect = require('connect');
 var connectDomain = require('../');
 var should = require('should');
 var request = require('supertest');
-var pedding = require('pedding');
-
 
 describe('domain.test.js', function () {
   var normalHandler = function normalHandler(req, res, next) {
@@ -41,35 +39,14 @@ describe('domain.test.js', function () {
   .use(normalHandler)
   .use(errorHandler);
 
-  var app2 = connect()
-  .use(connectDomain(function errorHandler2(err, req, res, next) {
-    err.message += ', process by errorHandler2';
-    next(err);
-  }))
-  .use(normalHandler)
-  .use(errorHandler);
-
   it('should GET / status 200', function (done) {
-    done = pedding(2, done);
-
     request(app)
-    .get('/')
-    .expect(200, done);
-
-    request(app2)
     .get('/')
     .expect(200, done);
   });
 
   it('should GET /sync_error status 500', function (done) {
-    done = pedding(2, done);
-
     request(app)
-    .get('/sync_error')
-    .expect('sync_error')
-    .expect(500, done);
-
-    request(app2)
     .get('/sync_error')
     .expect('sync_error')
     .expect(500, done);
@@ -89,16 +66,9 @@ describe('domain.test.js', function () {
     });
 
     it('should GET /async_error status 500', function (done) {
-      done = pedding(2, done);
-
       request(app)
       .get('/async_error')
       .expect('ff is not defined')
-      .expect(500, done);
-
-      request(app2)
-      .get('/async_error')
-      .expect('ff is not defined, process by errorHandler2')
       .expect(500, done);
     });
   });
