@@ -26,6 +26,15 @@ describe('domain.test.js', function () {
       });
       return;
     }
+    if (req.url === '/async_error_twice') {
+      setTimeout(function () {
+        ff.foo();
+      }, 100);
+      setTimeout(function () {
+        bar.bar();
+      }, 210);
+      return;
+    }
     res.end(req.url);
   };
 
@@ -60,14 +69,22 @@ describe('domain.test.js', function () {
     before(function () {
       mochaHandler = process.listeners('uncaughtException').pop();
     });
-    after(function () {
+    after(function (done) {
       // ...but be sure to re-enable mocha's error handler
       process.on('uncaughtException', mochaHandler);
+      setTimeout(done, 500);
     });
 
     it('should GET /async_error status 500', function (done) {
       request(app)
       .get('/async_error')
+      .expect('ff is not defined')
+      .expect(500, done);
+    });
+
+    it('should GET /async_error_twice status 500', function (done) {
+      request(app)
+      .get('/async_error_twice')
       .expect('ff is not defined')
       .expect(500, done);
     });
