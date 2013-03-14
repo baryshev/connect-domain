@@ -45,12 +45,20 @@ describe('domain.test.js', function () {
 
   var app = connect()
   .use(connectDomain())
+  .use('/public', connect.static(__dirname + '/fixtures'))
   .use(normalHandler)
   .use(errorHandler);
 
   it('should GET / status 200', function (done) {
     request(app)
     .get('/')
+    .expect(200, done);
+  });
+
+  it('should GET /public/foo.js status 200', function (done) {
+    request(app)
+    .get('/public/foo.js')
+    .expect('console.log(\'bar\');')
     .expect(200, done);
   });
 
